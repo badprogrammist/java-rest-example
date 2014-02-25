@@ -29,14 +29,15 @@
     <!--  
           Enables automatic mapping of fund objects to and from JSON  
     -->  
-    <mvc:annotation-driven/>  
+    <mvc:annotation-driven/>
     <!--  
           Setup spring to pull in @Controller, @RequestMapping, etc Configuration scans specified packages  
           for classes configured as Spring managed beans and automatically sets up objects annotated with  
           @Controller, @Service etc.  
     -->  
     <context:component-scan base-package="bp.resttest" />  
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />  
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    <mvc:resources mapping="/**" location="/" />
     <!--  
           Configures view for returning JSON to the client  
     -->  

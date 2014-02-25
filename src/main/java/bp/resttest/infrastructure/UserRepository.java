@@ -8,9 +8,7 @@ import bp.resttest.domain.User;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,15 +17,21 @@ import org.springframework.stereotype.Repository;
  */
 @Repository(value="userRepository")
 public class UserRepository {
-    private Map<UUID,User> users = new HashMap<>();
+    private Map<Long,User> users = new HashMap<>();
+    
+    private static long userNumber = 1;
 
     public UserRepository() {
-        saveUser(new User(UUID.randomUUID(),"Ildar",new Date()));
-        saveUser(new User(UUID.randomUUID(),"Renata",new Date()));
+        saveUser(new User(getNextId(),"Ildar",new Date()));
+        saveUser(new User(getNextId(),"Renata",new Date()));
+    }
+    
+    public final long getNextId() {
+        return userNumber++;
     }
     
     public void saveUser(User user) {
-        if(user.getId() != null) {
+        if(user.getId() != 0) {
             users.put(user.getId(),user);
         }
     }
@@ -36,7 +40,7 @@ public class UserRepository {
         return users.values();
     }
     
-    public User get(UUID id) {
+    public User get(long id) {
         return users.get(id);
     }
     

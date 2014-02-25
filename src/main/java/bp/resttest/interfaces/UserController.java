@@ -9,12 +9,14 @@ import bp.resttest.domain.User;
 import java.io.Serializable;
 import java.util.UUID;
 import javax.annotation.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -42,7 +44,7 @@ public class UserController {
 
     @ModelAttribute("currentUser")
     public User getCurrentUser() {
-        currentUser = new User(UUID.randomUUID());
+        currentUser = userService.createEmpty();
         return currentUser;
     }
 
@@ -52,9 +54,16 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getPayment(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("payment", userService.get(id));
-        return "/view.jsp";
+//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//    public String getUser(@PathVariable("id") String id, Model model) {
+//        model.addAttribute("user", userService.get(Long.valueOf(id)));
+//        return "/view.jsp";
+//    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public User getUser(@PathVariable("id") String id) {
+        return userService.get(Long.valueOf(id));
     }
+    
 }

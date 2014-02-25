@@ -7,7 +7,6 @@ package bp.resttest.application;
 import bp.resttest.domain.User;
 import bp.resttest.infrastructure.UserRepository;
 import java.util.Collection;
-import java.util.UUID;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +28,13 @@ public class UserService {
         repository.saveUser(user);
     }
     
-    public User get(UUID id) {
+    public User get(long id) {
         return repository.get(id);
+    }
+    
+    public User createEmpty() {
+        long id = repository.getNextId();
+        return new User(id);
     }
     
 }
