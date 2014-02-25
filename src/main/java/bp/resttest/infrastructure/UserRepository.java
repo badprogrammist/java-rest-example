@@ -22,8 +22,9 @@ public class UserRepository {
     private static long userNumber = 1;
 
     public UserRepository() {
-        saveUser(new User(getNextId(),"Ildar",new Date()));
-        saveUser(new User(getNextId(),"Renata",new Date()));
+        saveUser(new User(getNextId(),"Ildar",23,new Date()));
+        saveUser(new User(getNextId(),"Renata",20,new Date()));
+        saveUser(new User(getNextId(),"Lilya",10,new Date()));
     }
     
     public final long getNextId() {

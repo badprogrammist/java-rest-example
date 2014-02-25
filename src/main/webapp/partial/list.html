@@ -1,0 +1,16 @@
+<div>
+    <p>Search: <input ng-model="searchQuery"/></p>
+    <p>
+        Sort by:
+        <select ng-model="orderQuery">
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+        </select>
+    </p>
+    <ul>
+        <li ng-repeat="user in users | filter:searchQuery | orderBy:orderQuery" >
+            <a href="#/user/{{user.id}}">{{user.name}}</a> {{user.age}}
+        </li>
+    </ul>
+    <p>Total: {{users.length}}</p>
+</div>

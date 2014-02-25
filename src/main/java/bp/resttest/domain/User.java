@@ -14,6 +14,7 @@ import java.util.UUID;
 public class User {
     private long id;
     private String name;
+    private int age;
     private Date birthday;
 
     public User(long id) {
@@ -21,9 +22,10 @@ public class User {
         this.birthday = new Date();
     }
     
-    public User(long id,String name, Date birthday) {
+    public User(long id,String name, int age, Date birthday) {
         this.id = id;
         this.name = name;
+        this.age = age;
         this.birthday = birthday;
     }
 
@@ -37,6 +39,10 @@ public class User {
 
     public long getId() {
         return id;
+    }
+
+    public int getAge() {
+        return age;
     }
     
     
