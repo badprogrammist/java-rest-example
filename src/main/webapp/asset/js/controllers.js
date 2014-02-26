@@ -1,8 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 var userControllersModule = angular.module('userControllersModule',[])
 
 userControllersModule.controller('userList',['$scope', 'userService',

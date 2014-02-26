@@ -11,8 +11,8 @@ var userModule = angular.module('userModule', ['ngRoute','userServicesModule','u
 userModule.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-                when('/user', {templateUrl: 'partial/list.html', controller: userList}).
-                when('/user/:userId', {templateUrl: 'partial/detail.html', controller: userDetail}).
+                when('/user', {templateUrl: 'partial/list.html', controller: 'userList'}).
+                when('/user/:userId', {templateUrl: 'partial/detail.html', controller: 'userDetail'}).
                 otherwise({redirectTo: '/user'});
     }
 ]);
