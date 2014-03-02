@@ -32,6 +32,22 @@ public class UserService {
         return repository.get(id);
     }
     
+    public void updateUser(User user) {
+        remove(user);
+        addUser(user);
+    }
+    
+    public void remove(long id) {
+        User user = get(id);
+        if (user != null) {
+            remove(user);
+        }
+    }
+    
+    public void remove(User user) {
+        repository.remove(user);
+    }
+    
     public User createEmpty() {
         long id = repository.getNextId();
         return new User(id);

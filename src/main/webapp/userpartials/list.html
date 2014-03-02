@@ -9,8 +9,9 @@
     </p>
     <ul>
         <li ng-repeat="user in users | filter:searchQuery | orderBy:orderQuery" >
-            <a href="#/user/{{user.id}}">{{user.name}}</a> {{user.age}}
+            <a href="#/user/view/{{user.id}}">{{user.name}}</a> {{user.age}} <a href="" ng-click="remove(user)">delete</a>
         </li>
     </ul>
     <p>Total: {{users.length}}</p>
+    <a href="#/user/create">New user</a>
 </div>

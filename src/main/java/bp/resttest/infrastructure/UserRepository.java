@@ -32,9 +32,10 @@ public class UserRepository {
     }
     
     public void saveUser(User user) {
-        if(user.getId() != 0) {
-            users.put(user.getId(),user);
+        if(user.getId() == 0) {
+            user.setId(getNextId());
         }
+        users.put(user.getId(),user);
     }
     
     public Collection<User> getAll() {
@@ -43,6 +44,10 @@ public class UserRepository {
     
     public User get(long id) {
         return users.get(id);
+    }
+    
+    public void remove(User user) {
+        users.remove(user.getId());
     }
     
 }

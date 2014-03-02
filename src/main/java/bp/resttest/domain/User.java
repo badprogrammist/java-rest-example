@@ -17,6 +17,10 @@ public class User {
     private int age;
     private Date birthday;
 
+    public User() {
+        
+    }
+    
     public User(long id) {
         this.id = id;
         this.birthday = new Date();
@@ -43,6 +47,22 @@ public class User {
 
     public int getAge() {
         return age;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
     
     
