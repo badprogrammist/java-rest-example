@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.resttest.application;
+package bp.tasker.security.application;
 
-import bp.resttest.domain.User;
-import bp.resttest.infrastructure.UserRepository;
+import bp.tasker.security.domain.User;
+import bp.tasker.security.infrastructure.UserRepository;
 import java.util.Collection;
 import javax.annotation.Resource;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,11 +26,15 @@ public class UserService {
     }
     
     public void addUser(User user) {
-        repository.saveUser(user);
+        repository.save(user);
     }
     
     public User get(long id) {
         return repository.get(id);
+    }
+    
+    public UserDetails getUserDetailsByUsername(String username) {
+        return repository.loadUserByUsername(username);
     }
     
     public void updateUser(User user) {

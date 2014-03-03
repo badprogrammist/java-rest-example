@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.resttest.interfaces;
+package bp.tasker.security.interfaces;
 
-import bp.resttest.application.UserService;
-import bp.resttest.domain.User;
+import bp.tasker.security.application.UserService;
+import bp.tasker.security.domain.User;
 import java.util.Collection;
 import javax.annotation.Resource;
 import org.springframework.http.MediaType;

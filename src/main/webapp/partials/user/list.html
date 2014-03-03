@@ -4,12 +4,12 @@
         Sort by:
         <select ng-model="orderQuery">
             <option value="name">Name</option>
-            <option value="age">Age</option>
+<!--            <option value="age">Age</option>-->
         </select>
     </p>
     <ul>
         <li ng-repeat="user in users | filter:searchQuery | orderBy:orderQuery" >
-            <a href="#/user/view/{{user.id}}">{{user.name}}</a> {{user.age}} <a href="" ng-click="remove(user)">delete</a>
+            <a href="#/user/view/{{user.id}}">{{user.username}}</a> <a href="" ng-click="remove(user)">delete</a>
         </li>
     </ul>
     <p>Total: {{users.length}}</p>
