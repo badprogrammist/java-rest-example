@@ -1,4 +1,4 @@
-package bp.tasker.security.domain;
+package bp.tasker.security.authentication;
 
 import java.util.Map;
 

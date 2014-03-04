@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.application;
+package bp.tasker.security.authentication;
 
-import bp.tasker.security.domain.UserTransfer;
+import bp.tasker.application.UserService;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;

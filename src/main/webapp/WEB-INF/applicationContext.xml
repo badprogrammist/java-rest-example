@@ -16,34 +16,14 @@
                                     http://www.springframework.org/schema/security
                                     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <!--bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/WEB-INF/jdbc.properties" />
-
-<bean id="dataSource"
-    class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-    p:driverClassName="${jdbc.driverClassName}"
-    p:url="${jdbc.url}"
-    p:username="${jdbc.username}"
-    p:password="${jdbc.password}" /-->
-
-    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
-    
-    <!--  
-          Enables automatic mapping of fund objects to and from JSON  
-    -->  
     <mvc:annotation-driven/>
-    <!--  
-          Setup spring to pull in @Controller, @RequestMapping, etc Configuration scans specified packages  
-          for classes configured as Spring managed beans and automatically sets up objects annotated with  
-          @Controller, @Service etc.  
-    -->  
+
     <context:component-scan base-package="bp" />  
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
     <mvc:resources mapping="/**" location="/" />
     
     <!--Security-->
-    <bean id="passwordEncoder" class="bp.tasker.security.application.SaltedSHA256PasswordEncoder">
+    <bean id="passwordEncoder" class="bp.tasker.security.authentication.SaltedSHA256PasswordEncoder">
         <constructor-arg value="secret" />
     </bean>
 	
@@ -68,35 +48,10 @@
         <security:intercept-url method="DELETE" pattern="/user/**" access="hasRole('admin')" />
     </security:http>
 
-    <bean id="unauthorizedEntryPoint" class="bp.tasker.security.application.UnauthorizedEntryPoint" />
+    <bean id="unauthorizedEntryPoint" class="bp.tasker.security.authentication.UnauthorizedEntryPoint" />
 
-    <bean id="authenticationTokenProcessingFilter" class="bp.tasker.security.application.AuthenticationTokenProcessingFilter" >
+    <bean id="authenticationTokenProcessingFilter" class="bp.tasker.security.authentication.AuthenticationTokenProcessingFilter" >
         <constructor-arg ref="userRepository" />
     </bean>
-    
-    
-    
-    <!--  
-          Configures view for returning JSON to the client  
-    -->  
-    <!--    <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">  
-        <property name="contentType" value="text/plain"/>  
-    </bean>  -->
-    <!--  
-          maps handler methods based on HTTP paths
-    -->  
-    <!--    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
-        <property name="messageConverters">  
-            <util:list id="beanList">  
-                <ref bean="jsonMessageConverter"/>  
-            </util:list>  
-        </property>  
-    </bean>  -->
-    <!--  
-          Converts JSON to POJO and vice versa  
-    -->  
-    <!--<bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>-->  
-    
-    
 
 </beans>

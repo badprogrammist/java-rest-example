@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.interfaces;
+package bp.tasker.interfaces.security.authentication;
 
-import bp.tasker.security.application.AuthenticationService;
-import bp.tasker.security.domain.UserTransfer;
+import bp.tasker.security.authentication.AuthenticationService;
+import bp.tasker.security.authentication.UserTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

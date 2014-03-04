@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.infrastructure;
+package bp.tasker.infrastructure;
 
-import bp.tasker.security.domain.Role;
+import bp.tasker.domain.user.Role;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Repository;

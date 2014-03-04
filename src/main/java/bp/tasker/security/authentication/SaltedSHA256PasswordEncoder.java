@@ -1,4 +1,4 @@
-package bp.tasker.security.application;
+package bp.tasker.security.authentication;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

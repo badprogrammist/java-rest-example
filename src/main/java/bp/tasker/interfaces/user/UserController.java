@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.interfaces;
+package bp.tasker.interfaces.user;
 
-import bp.tasker.security.application.UserService;
-import bp.tasker.security.domain.User;
+import bp.tasker.application.UserService;
+import bp.tasker.domain.user.User;
 import java.util.Collection;
 import javax.annotation.Resource;
 import org.springframework.http.MediaType;

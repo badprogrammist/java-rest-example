@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.application;
+package bp.tasker.application;
 
-import bp.tasker.security.domain.User;
-import bp.tasker.security.infrastructure.UserRepository;
+import bp.tasker.domain.user.User;
+import bp.tasker.infrastructure.UserRepository;
 import java.util.Collection;
 import javax.annotation.Resource;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.infrastructure;
+package bp.tasker.infrastructure;
 
-import bp.tasker.security.domain.User;
+import bp.tasker.domain.user.User;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;

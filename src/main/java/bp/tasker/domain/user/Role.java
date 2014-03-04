@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bp.tasker.security.domain;
+package bp.tasker.domain.user;
+
+import bp.tasker.domain.AbstractEntity;
 
 /**
  *
