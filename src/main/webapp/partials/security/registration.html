@@ -1,0 +1,33 @@
+
+<div>
+    <form role="form">
+        <h3>Регистрация</h3>
+        <input
+            id="fullname"
+            ng-model="fullname"
+            type="text"
+            class="form-control"
+            placeholder="Имя"
+            required autofocus/>
+        <input
+            id="username"
+            ng-model="username"
+            type="text"
+            class="form-control"
+            placeholder="Логин"
+            required autofocus/>
+        <input
+            id="password"
+            ng-model="password"
+            type="password"
+            class="form-control"
+            placeholder="Пароль"
+            required/>
+        <input
+            type="submit"
+            class="btn btn-lg btn-primary"
+            value="Завершить"
+            ng-click="register()"/>
+    </form>
+</div>
+

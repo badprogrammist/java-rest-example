@@ -3,7 +3,10 @@ var securityModule = angular.module('securityModule', ['ngRoute', 'ngCookies']);
 securityModule.config(['$routeProvider', '$locationProvider', '$httpProvider',
     function($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider.
-                when('/security/login', {templateUrl: 'partials/security/login.html', controller: 'securityLoginController'}).
+                when('/security/login', {templateUrl: 'partials/security/login.html', controller: 'securityController'}).
+                when('/security/registration', {templateUrl: 'partials/security/registration.html', controller: 'securityController'}).
+                when('/security/success', {templateUrl: 'partials/security/registration_success.html'}).
+                when('/security/fail', {templateUrl: 'partials/security/registration_fail.html'}).
                 otherwise({redirectTo: '/'});
 
         var securityInterceptor = function($rootScope, $q, $location) {
@@ -67,16 +70,27 @@ securityModule.run(function($rootScope, $http, $location, $cookieStore) {
     }
 });
 
-securityModule.controller('securityLoginController', ['$scope', '$rootScope', '$location', '$http', '$cookieStore', 'securityService',
+securityModule.controller('securityController', ['$scope', '$rootScope', '$location', '$http', '$cookieStore', 'securityService',
     function($scope, $rootScope, $location, $http, $cookieStore, securityService) {
         $scope.login = function() {
-            securityService.authenticate({username: $scope.username, password: $scope.password}, function(user) {
-                $rootScope.currentUser = user;
-                $http.defaults.headers.common['X-Auth-Token'] = user.token;
-                $cookieStore.put('currentUser', user);
-                $location.path("/");
+            securityService.authenticate({username: $scope.username, password: $scope.password}, addUserTransferInCookie);
+        };
+        $scope.register = function() {
+            securityService.register({fullname: $scope.fullname, username: $scope.username, password: $scope.password}, function(success){
+                if(success) {
+                    $location.path("/security/success");
+                } else {
+                    $location.path("/security/fail");
+                }
             });
         };
+        function addUserTransferInCookie(userTransfer) {
+            $rootScope.currentUser = userTransfer;
+            $http.defaults.headers.common['X-Auth-Token'] = userTransfer.token;
+            $cookieStore.put('currentUser', userTransfer);
+            $location.path("/");
+        }
+
     }
 ]);
 
@@ -86,6 +100,10 @@ securityModule.factory('securityService', function($resource) {
             method: 'POST',
             params: {'action': 'authenticate'}
         },
+        register: {
+            method: 'POST',
+            params: {'action': 'register'}
+        }
     });
 });
 

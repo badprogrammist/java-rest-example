@@ -4,9 +4,11 @@
  */
 package bp.tasker.application;
 
+import bp.tasker.domain.user.Role;
+import bp.tasker.domain.user.RoleRepository;
 import bp.tasker.domain.user.User;
 import bp.tasker.domain.user.UserRepository;
-import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -19,42 +21,54 @@ import org.springframework.stereotype.Service;
 public class UserService {
     
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
     
-    public Collection<User> getUsers() {
-        return repository.getAll();
+    @Autowired
+    private RoleRepository roleRepository;
+    
+    public List<User> getUsers() {
+        return userRepository.getAll();
     }
     
-    public void addUser(User user) {
-        repository.save(user);
+    public User createUser(String fullname, String username, String encodedPassword, Role role) {
+        User user = new User(fullname, username, encodedPassword);
+        user.getRoles().add(role);
+        userRepository.save(user);
+        return user;
     }
     
     public User get(long id) {
-        return repository.get(id);
+        return userRepository.get(id);
+    }
+    
+    public Role getRoleByName(String name) {
+        return roleRepository.getByName(name);
+    }
+    
+    public Role createRole(String name) {
+        Role role = roleRepository.getByName(name);
+        if(role == null) {
+            role = new Role();
+            role.setName(name);
+            roleRepository.save(role);
+        }
+        return role;
     }
     
     public UserDetails getUserDetailsByUsername(String username) {
-        return repository.loadUserByUsername(username);
+        return userRepository.loadUserByUsername(username);
     }
     
     public void updateUser(User user) {
-        remove(user);
-        addUser(user);
+        userRepository.edit(user);
     }
     
     public void remove(long id) {
-        User user = get(id);
-        if (user != null) {
-            remove(user);
-        }
+        userRepository.remove(get(id));
     }
     
     public void remove(User user) {
-        repository.remove(user);
-    }
-    
-    public User createEmpty() {
-        return new User();
+        userRepository.remove(user);
     }
     
 }

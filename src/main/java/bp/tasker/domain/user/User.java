@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,13 +24,21 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author Ильдар
  */
 @Entity
-@Table(name = "users",schema = "user")
+@Table(name = "users")
+@NamedQueries({
+    @NamedQuery(name = "User.findAll",
+            query = "Select c from User c"),
+    @NamedQuery(name = "User.findByUsername",
+            query = "Select c from User c where c.username = :username")})
 public class User extends AbstractEntity implements UserDetails {
 
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     private String username;
     @Column(name="password")
     private String password;
+    @Column(name = "fullname")
+    private String fullname;
+    
     @OneToMany
     private Set<Role> roles = new HashSet<>();
 
@@ -39,8 +49,8 @@ public class User extends AbstractEntity implements UserDetails {
         super(id);
     }
 
-    public User(long id, String username, String password) {
-        super(id);
+    public User(String fullname, String username, String password) {
+        this.fullname = fullname;
         this.username = username;
         this.password = password;
     }
@@ -101,6 +111,14 @@ public class User extends AbstractEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
     
 }

@@ -4,7 +4,7 @@
  */
 package bp.tasker.interfaces.security;
 
-import bp.tasker.security.AuthenticationService;
+import bp.tasker.security.SecurityService;
 import bp.tasker.security.UserTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,14 +20,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/security")
-public class AuthenticationController {
+public class SecurityController {
 
     @Autowired
-    private AuthenticationService authService;
+    private SecurityService securityService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserTransfer authenticate(@RequestBody Credentials credentials) {
-        return authService.authenticate(credentials.getUsername(), credentials.getPassword());
+    public UserTransfer authenticate(@RequestBody AuthenticateData data) {
+        return securityService.authenticate(data.getUsername(), data.getPassword());
+    }
+    
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Boolean register(@RequestBody RegistrationData data) {
+        return securityService.register(data.getFullname(), data.getUsername(), data.getPassword());
     }
 }

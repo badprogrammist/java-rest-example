@@ -7,6 +7,8 @@ package bp.tasker.domain.user;
 import bp.tasker.domain.AbstractEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -14,10 +16,15 @@ import javax.persistence.Table;
  * @author Ильдар
  */
 @Entity
-@Table(name = "roles", schema = "user")
+@Table(name = "roles")
+@NamedQueries({
+    @NamedQuery(name = "Role.findAll",
+            query = "Select c from Role c"),
+    @NamedQuery(name = "Role.findByName",
+            query = "Select c from Role c where c.name = :name")})
 public class Role extends AbstractEntity {
     
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
     private String name;
 
     public Role() {

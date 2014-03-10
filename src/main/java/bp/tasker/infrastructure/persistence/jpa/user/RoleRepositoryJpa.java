@@ -9,12 +9,8 @@ import bp.tasker.domain.user.RoleRepository;
 import bp.tasker.infrastructure.persistence.jpa.AbstractRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -31,16 +27,11 @@ public class RoleRepositoryJpa extends AbstractRepository<Role> implements RoleR
     }
     
     @Override
+    @Transactional
     public Role getByName(String name) {
-        final CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
-        final CriteriaQuery<Role> criteriaQuery = builder.createQuery(Role.class);
-
-        Root<Role> root = criteriaQuery.from(Role.class);
-        Path<String> namePath = root.get("name");
-        criteriaQuery.where(builder.equal(namePath, name));
-
-        TypedQuery<Role> typedQuery = this.getEntityManager().createQuery(criteriaQuery);
-        return typedQuery.getSingleResult();
+        return entityManager.createNamedQuery("Role.findByName",Role.class)
+                .setParameter("name", name)
+                .getSingleResult();
     }
 
     @Override

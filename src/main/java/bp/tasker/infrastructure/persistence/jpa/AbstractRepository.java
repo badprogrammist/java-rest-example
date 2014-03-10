@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -26,11 +27,13 @@ public abstract class AbstractRepository<E extends AbstractEntity> implements Re
     }
 
     @Override
+    @Transactional
     public void save(E entity) {
-        getEntityManager().merge(entity);
+        getEntityManager().persist(getEntityManager().merge(entity));
     }
 
     @Override
+    @Transactional
     public List<E> getAll() {
         final CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
         final CriteriaQuery<E> criteriaQuery = builder.createQuery(this.entityClass);
@@ -40,12 +43,20 @@ public abstract class AbstractRepository<E extends AbstractEntity> implements Re
     }
 
     @Override
+    @Transactional
     public E get(Long id) {
         return getEntityManager().find(entityClass, id);
     }
 
     @Override
+    @Transactional
     public void remove(E entity) {
         getEntityManager().remove(entity);
+    }
+
+    @Override
+    @Transactional
+    public void edit(E entity) {
+        getEntityManager().merge(entity);
     }
 }

@@ -1,7 +1,11 @@
 
 <div>
-    <p>Login: <input id="username" ng-model="username" type="text" /></p>
-    <p>Password: <input id="password" ng-model="password" type="password" /></p>
-    <input type="submit" value="Log In" class="btn btn-primary" ng-click="login()"/>
+    <form class="form-signin" role="form">
+        <h3 class="form-signin-heading">Добро пожаловать</h3>
+        <input id="username" ng-model="username" type="text" class="form-control" placeholder="Логин" required autofocus/>
+        <input id="password" ng-model="password" type="password" class="form-control" placeholder="Пароль" required/>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Войти" ng-click="login()"/>
+        <a href="#/security/registration" >Регистрация</a>
+    </form>
 </div>
 

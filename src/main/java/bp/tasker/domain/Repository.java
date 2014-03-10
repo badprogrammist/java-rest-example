@@ -13,6 +13,7 @@ import java.util.List;
 public interface Repository<E extends AbstractEntity> {
     
     public void save(E entity);
+    public void edit(E entity);
     public List<E> getAll();
     public E get(Long id);
     public void remove(E entity);

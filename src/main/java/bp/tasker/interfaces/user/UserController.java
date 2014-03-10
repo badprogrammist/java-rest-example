@@ -48,7 +48,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void addUser(@RequestBody User user) {
-        userService.addUser(user);
+        //userService.save(user);
     }
     
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
