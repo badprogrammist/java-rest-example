@@ -31,7 +31,9 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
     <mvc:resources mapping="/**" location="/" />
     
-    <!--Security-->
+    <!--
+        Security
+    -->
     <bean id="passwordEncoder" class="bp.tasker.security.SaltedSHA256PasswordEncoder">
         <constructor-arg value="secret" />
     </bean>
@@ -67,9 +69,6 @@
     <!--
            DATABASE SETUP 
     -->
-
-    
-
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="username" value="postgres" />
         <property name="password" value="12345" />
@@ -89,7 +88,9 @@
         </property>
     </bean>
 
-    <!-- Transactions -->
+    <!-- 
+        Transactions
+    -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>

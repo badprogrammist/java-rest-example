@@ -8,6 +8,7 @@ import bp.tasker.domain.AbstractEntity;
 import bp.tasker.domain.user.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -32,7 +33,7 @@ public class Task extends AbstractEntity {
     @Column(name = "fulfilled")
     private Boolean fulfilled = false;
     
-    @Column(name = "owner")
+    @JoinColumn(name = "owner")
     @ManyToOne
     private User owner;
 
