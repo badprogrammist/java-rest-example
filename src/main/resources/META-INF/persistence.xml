@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>bp.tasker.domain.user.Role</class>
     <class>bp.tasker.domain.user.User</class>
+    <class>bp.tasker.domain.unit.Unit</class>
+    <class>bp.tasker.domain.unit.UnitAdministrator</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tasker"/>

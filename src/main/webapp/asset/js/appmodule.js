@@ -1,2 +1,2 @@
-var appModule = angular.module('appModule', ['ngRoute','userModule','securityModule']);
+var appModule = angular.module('appModule', ['ngRoute','userModule','securityModule','unitModule']);
 

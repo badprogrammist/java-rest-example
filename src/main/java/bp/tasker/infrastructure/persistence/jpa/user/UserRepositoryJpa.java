@@ -6,7 +6,7 @@ package bp.tasker.infrastructure.persistence.jpa.user;
 
 import bp.tasker.domain.user.User;
 import bp.tasker.domain.user.UserRepository;
-import bp.tasker.infrastructure.persistence.jpa.AbstractRepository;
+import bp.tasker.infrastructure.persistence.jpa.AbstractRepositoryJPA;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Ильдар
  */
 @Repository(value = "userRepository")
-public class UserRepositoryJpa extends AbstractRepository<User> implements UserRepository {
+public class UserRepositoryJpa extends AbstractRepositoryJPA<User> implements UserRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

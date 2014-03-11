@@ -54,10 +54,12 @@
         <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
         <security:intercept-url pattern="/security/authenticate" access="permitAll" />
         <security:intercept-url pattern="/security/register" access="permitAll" />
-        <security:intercept-url method="GET" pattern="/user/**" access="hasAnyRole('user','admin')" />
-        <security:intercept-url method="PUT" pattern="/user/**" access="hasRole('admin')" />
-        <security:intercept-url method="POST" pattern="/user/**" access="hasRole('admin')" />
-        <security:intercept-url method="DELETE" pattern="/user/**" access="hasRole('admin')" />
+        
+        <!--<security:intercept-url method="GET" pattern="/unit/**" access="hasAnyRole('user','admin')" />-->
+        <security:intercept-url method="GET" pattern="/unit/**" access="hasRole('user')" />
+        <security:intercept-url method="PUT" pattern="/unit/**" access="hasRole('user')" />
+        <security:intercept-url method="POST" pattern="/unit/**" access="hasRole('user')" />
+        <security:intercept-url method="DELETE" pattern="/unit/**" access="hasRole('user')" />
     </security:http>
 
     <bean id="unauthorizedEntryPoint" class="bp.tasker.security.UnauthorizedEntryPoint" />

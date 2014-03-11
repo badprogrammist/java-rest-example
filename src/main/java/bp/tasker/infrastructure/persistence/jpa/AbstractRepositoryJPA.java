@@ -17,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Ильдар
  */
-public abstract class AbstractRepository<E extends AbstractEntity> implements Repository<E> {
+public abstract class AbstractRepositoryJPA<E extends AbstractEntity> implements Repository<E> {
 
     protected abstract EntityManager getEntityManager();
     private Class<E> entityClass;
 
-    public AbstractRepository(Class<E> entityClass) {
+    public AbstractRepositoryJPA(Class<E> entityClass) {
         this.entityClass = entityClass;
     }
 

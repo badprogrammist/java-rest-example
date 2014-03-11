@@ -6,7 +6,7 @@ package bp.tasker.infrastructure.persistence.jpa.user;
 
 import bp.tasker.domain.user.Role;
 import bp.tasker.domain.user.RoleRepository;
-import bp.tasker.infrastructure.persistence.jpa.AbstractRepository;
+import bp.tasker.infrastructure.persistence.jpa.AbstractRepositoryJPA;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Ильдар
  */
 @Repository
-public class RoleRepositoryJpa extends AbstractRepository<Role> implements RoleRepository {
+public class RoleRepositoryJpa extends AbstractRepositoryJPA<Role> implements RoleRepository {
     
     @PersistenceContext
     private EntityManager entityManager;
