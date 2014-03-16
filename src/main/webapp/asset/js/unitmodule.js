@@ -13,8 +13,11 @@ unitModule.config(['$routeProvider',
 unitModule.factory('unitFactory', function($resource) {
     return $resource('unit/:id', {}, {
         query: {method: 'GET', isArray: true},
-        save: {method: 'POST', headers: {'Content-Type': 'application/json'}},
-        update: {method: 'PUT', headers: {'Content-Type': 'application/json'}, params: {id: '@id'}},
+        save: {method: 'POST', headers: { 
+        'Accept': 'application/json',
+        'Content-Type': 'application/json' 
+    }},
+        update: {method: 'PUT', params: {id: '@id'}},
         remove: {method: 'DELETE', params: {id: '@id'}}
     });
 });
@@ -46,7 +49,6 @@ unitModule.controller('unitCreate', ['$scope', '$location', 'unitFactory',
     function($scope, $location, unitFactory) {
         $scope.unit = new unitFactory();
         $scope.save = function() {
-            window.console.log($scope.unit);
             $scope.unit.$save(function() {
                 $location.path('/unit');
             });

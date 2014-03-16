@@ -6,7 +6,6 @@ package bp.tasker.domain.unit;
 
 import bp.tasker.domain.AbstractEntity;
 import bp.tasker.domain.user.User;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 /**
  *
@@ -36,7 +35,7 @@ public class UnitAdministrator extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "unit")
-    @JsonManagedReference
+    @JsonBackReference
     private Unit unit;
 
     public UnitAdministrator(User user, Unit unit) {
