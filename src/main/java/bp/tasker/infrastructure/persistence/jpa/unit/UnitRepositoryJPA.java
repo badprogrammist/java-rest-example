@@ -35,7 +35,7 @@ public class UnitRepositoryJPA extends AbstractRepositoryJPA<Unit> implements Un
     public List<Unit> getUnits(User user) {
         List<UnitAdministrator> administrators = entityManager
                 .createNamedQuery("UnitAdministrator.findAllByUser",UnitAdministrator.class)
-                .setParameter("user", user)
+                .setParameter("administrator", user)
                 .getResultList();
         List<Unit> units = new ArrayList<>();
         for (UnitAdministrator admin : administrators) {

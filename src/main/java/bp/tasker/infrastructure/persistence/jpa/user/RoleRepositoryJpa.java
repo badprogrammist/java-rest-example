@@ -7,6 +7,7 @@ package bp.tasker.infrastructure.persistence.jpa.user;
 import bp.tasker.domain.user.Role;
 import bp.tasker.domain.user.RoleRepository;
 import bp.tasker.infrastructure.persistence.jpa.AbstractRepositoryJPA;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -29,9 +30,14 @@ public class RoleRepositoryJpa extends AbstractRepositoryJPA<Role> implements Ro
     @Override
     @Transactional
     public Role getByName(String name) {
-        return entityManager.createNamedQuery("Role.findByName",Role.class)
+        List<Role> roles = entityManager.createNamedQuery("Role.findByName",Role.class)
                 .setParameter("name", name)
-                .getSingleResult();
+                .getResultList();
+        if (roles == null || roles.isEmpty()) {
+            return null;
+        } else {
+            return roles.iterator().next();
+        }
     }
 
     @Override

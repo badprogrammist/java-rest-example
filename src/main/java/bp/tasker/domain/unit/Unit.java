@@ -10,10 +10,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 /**
  *
@@ -29,8 +32,9 @@ public class Unit extends AbstractEntity {
     
     @Column(name = "name")
     private String name;
-    
+
     @OneToMany(mappedBy = "unit",cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<UnitAdministrator> administrators = new ArrayList<>();
 
     public Unit(String name) {
@@ -49,10 +53,10 @@ public class Unit extends AbstractEntity {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public List<UnitAdministrator> getAdministrators() {
         return administrators;
-    }
+}
 
     public void setAdministrators(List<UnitAdministrator> administrators) {
         this.administrators = administrators;

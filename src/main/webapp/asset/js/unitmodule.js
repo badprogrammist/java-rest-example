@@ -13,11 +13,17 @@ unitModule.config(['$routeProvider',
 unitModule.factory('unitFactory', function($resource) {
     return $resource('unit/:id', {}, {
         query: {method: 'GET', isArray: true},
-        save: {method: 'POST'},
-        update: {method: 'PUT', params: {id: '@id'}},
+        save: {method: 'POST', headers: {'Content-Type': 'application/json'}},
+        update: {method: 'PUT', headers: {'Content-Type': 'application/json'}, params: {id: '@id'}},
         remove: {method: 'DELETE', params: {id: '@id'}}
     });
 });
+
+//unitModule.config(['$httpProvider', function($httpProvider) {
+//    $httpProvider.defaults.headers.patch = {
+//         'Content-Type': 'application/json;charset=utf-8'
+//    };
+//}]);
 
 unitModule.controller('unitList', ['$scope', 'unitFactory',
     function($scope, unitFactory) {
@@ -26,7 +32,7 @@ unitModule.controller('unitList', ['$scope', 'unitFactory',
             unit.$remove(function() {
                 $scope.units = unitFactory.query();
             });
-        }
+        };
     }
 ]);
 
@@ -40,10 +46,10 @@ unitModule.controller('unitCreate', ['$scope', '$location', 'unitFactory',
     function($scope, $location, unitFactory) {
         $scope.unit = new unitFactory();
         $scope.save = function() {
-            unitFactory.save($scope.name,function(){$location.path('/');});
-//            $scope.unit.$save(,function() {
-//                $location.path('/');
-//            });
+            window.console.log($scope.unit);
+            $scope.unit.$save(function() {
+                $location.path('/unit');
+            });
         };
     }
 ]);

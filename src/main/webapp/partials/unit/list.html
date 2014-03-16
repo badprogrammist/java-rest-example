@@ -1,8 +1,7 @@
 <div>
-    <p>Search: <input ng-model="searchQuery"/></p>
     <ul>
-        <li ng-repeat="unit in units | filter:searchQuery" >
-            <a href="#/unit/view/{{unit.id}}">{{user.username}}</a>
+        <li ng-repeat="unit in units">
+            <a href="#/unit/view/{{unit.id}}">{{unit.name}}</a>
         </li>
     </ul>
     <p>Total: {{units.length}}</p>

@@ -6,12 +6,15 @@ package bp.tasker.domain.unit;
 
 import bp.tasker.domain.AbstractEntity;
 import bp.tasker.domain.user.User;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  *
@@ -23,32 +26,33 @@ import javax.persistence.Table;
     @NamedQuery(name = "UnitAdministrator.findAll",
             query = "Select c from UnitAdministrator c"),
     @NamedQuery(name = "UnitAdministrator.findAllByUser",
-            query = "Select c from UnitAdministrator c where c.user = :user")
+            query = "Select c from UnitAdministrator c where c.administrator = :administrator")
 })
 public class UnitAdministrator extends AbstractEntity {
     
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "administrator")
+    @OneToOne
+    private User administrator;
+
     @ManyToOne
-    private User user;
-    
     @JoinColumn(name = "unit")
-    @ManyToOne
+    @JsonManagedReference
     private Unit unit;
 
     public UnitAdministrator(User user, Unit unit) {
-        this.user = user;
+        this.administrator = user;
         this.unit = unit;
     }
 
     public UnitAdministrator() {
     }
 
-    public User getUser() {
-        return user;
+    public User getAdministrator() {
+        return administrator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAdministrator(User administrator) {
+        this.administrator = administrator;
     }
 
     public Unit getUnit() {
