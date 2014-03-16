@@ -1,5 +1,11 @@
 <div>
     <p>Name: {{unit.name}}</p>
-    {{unit.administrators}}
+    <p>Администраторы:</p>
+    <ul>
+        <li ng-repeat="unitAdministrator in unit.administrators">
+            
+            <a href="#/user/view/{{unitAdministrator.administrator.id}}">{{unitAdministrator.administrator.fullname}}</a>
+        </li>
+    </ul>
     <a href="#/unit/edit/{{unit.id}}">Edit</a>
 </div>

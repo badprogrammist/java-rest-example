@@ -33,7 +33,6 @@ public class Unit extends AbstractEntity {
 
     @OneToMany(mappedBy = "unit",cascade = CascadeType.ALL)
     @JsonManagedReference
-    
     private List<UnitAdministrator> administrators = new ArrayList<>();
 
     public Unit(String name) {

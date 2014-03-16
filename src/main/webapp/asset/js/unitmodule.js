@@ -13,10 +13,7 @@ unitModule.config(['$routeProvider',
 unitModule.factory('unitFactory', function($resource) {
     return $resource('unit/:id', {}, {
         query: {method: 'GET', isArray: true},
-        save: {method: 'POST', headers: { 
-        'Accept': 'application/json',
-        'Content-Type': 'application/json' 
-    }},
+        save: {method: 'POST'},
         update: {method: 'PUT', params: {id: '@id'}},
         remove: {method: 'DELETE', params: {id: '@id'}}
     });
