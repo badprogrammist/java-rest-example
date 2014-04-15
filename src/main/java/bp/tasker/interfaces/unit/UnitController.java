@@ -34,7 +34,7 @@ public class UnitController {
         return unitService.getUnits(SecurityContext.getPrincipal());
     }
     
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void addUnit(@RequestBody Unit unit) {
         unitService.saveUnit(unit, SecurityContext.getPrincipal());

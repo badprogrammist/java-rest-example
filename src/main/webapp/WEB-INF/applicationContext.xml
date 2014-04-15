@@ -44,7 +44,7 @@
         </security:authentication-provider>
     </security:authentication-manager>
     
-    <security:http
+    <security:http 
         realm="Protected API"
         use-expressions="true"
         auto-config="false"

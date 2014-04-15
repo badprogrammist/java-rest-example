@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Unit extends AbstractEntity {
     private String name;
 
     @OneToMany(mappedBy = "unit",cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference()
     private List<UnitAdministrator> administrators = new ArrayList<>();
 
     public Unit(String name) {

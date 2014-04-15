@@ -51,7 +51,7 @@ public abstract class AbstractRepositoryJPA<E extends AbstractEntity> implements
     @Override
     @Transactional
     public void remove(E entity) {
-        getEntityManager().remove(entity);
+        getEntityManager().remove(getEntityManager().merge(entity));
     }
 
     @Override
