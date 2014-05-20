@@ -20,7 +20,7 @@
             <artifactId>spring-aop</artifactId>
             <version>4.0.2.RELEASE</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-asm</artifactId>
             <version>3.1.4.RELEASE</version>
@@ -110,7 +110,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.0.2.RELEASE</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-struts</artifactId>
             <version>3.2.8.RELEASE</version>
@@ -140,6 +140,11 @@
             <groupId>org.codehaus.jackson</groupId>  
             <artifactId>jackson-mapper-asl</artifactId>  
             <version>1.9.13</version>  
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>1.9.13</version>
         </dependency>
         
           

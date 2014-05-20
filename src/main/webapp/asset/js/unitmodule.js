@@ -10,7 +10,7 @@ unitModule.config(['$routeProvider',
     }
 ]);
 
-unitModule.factory('unitFactory', function($resource, $http) {
+unitModule.factory('unitFactory', function($resource) {
 
     return $resource('unit/:id', {}, {
         query: {method: 'GET', isArray: true},
@@ -51,9 +51,10 @@ unitModule.controller('unitCreate', ['$scope', '$location', 'unitFactory',
 unitModule.controller('unitEdit', ['$scope', '$routeParams', '$location', 'unitFactory',
     function($scope, $routeParams, $location, unitFactory) {
         $scope.unit = unitFactory.get({id: $routeParams.id});
-        $scope.save = function() {
+        $scope.update = function() {
+            
             $scope.unit.$update(function() {
-                $location.path('/');
+                $location.path('/unit');
             });
         };
     }

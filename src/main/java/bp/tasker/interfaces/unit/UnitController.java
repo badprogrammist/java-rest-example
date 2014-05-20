@@ -52,7 +52,7 @@ public class UnitController {
         unitService.remove(Long.valueOf(id));
     }
     
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void updateUnit(@RequestBody Unit unit) {
         unitService.updateUnit(unit);
